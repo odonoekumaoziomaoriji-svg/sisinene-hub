@@ -277,10 +277,9 @@ function showAdminToast(msg) {
 
 // ── INIT ──────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
-  const { data: { session } } = await db.auth.getSession();
-  console.log('INIT SESSION:', session);
-  if (session) showDashboard();
-  else showLogin();
+  // Always sign out on page load so password is required every time
+  await db.auth.signOut();
+  showLogin();
 
   document.getElementById('login-form').addEventListener('submit', adminLogin);
   document.getElementById('product-form').addEventListener('submit', saveProduct);
