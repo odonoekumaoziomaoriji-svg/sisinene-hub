@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sisinene Hub — Admin</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Sisi<em>nene</em> Hub</div>
+    <p class="login-sub">Admin Panel — Sign in to manage products</p>
+    <form id="login-form">
+      <div class="form-group">
+        <label for="admin-email">Email</label>
+        <input type="email" id="admin-email" placeholder="admin@sisinene.com" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="admin-password">Password</label>
+        <input type="password" id="admin-password" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="login-btn">Sign In</button>
+      <p class="login-error" id="login-error"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     DASHBOARD
+══════════════════════════════════════════ -->
+<div id="dashboard">
+
+  <header class="dash-header">
+    <div class="dash-logo">Sisinene Hub <small>Admin</small></div>
+    <button class="logout-btn" onclick="adminLogout()">Sign Out</button>
+  </header>
+
+  <main class="dash-body">
+    <div class="dash-top">
+      <h1>Products</h1>
+      <button class="btn-add" onclick="openAddModal()">+ Add Product</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Stock</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="product-tbody">
+          <tr><td colspan="6" class="loading-row">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PRODUCT MODAL
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="modal-title">Add Product</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+
+    <form id="product-form">
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label for="prod-name">Product Name *</label>
+          <input type="text" id="prod-name" placeholder="e.g. Garri Ijebu (5kg)" required>
+        </div>
+
+        <div class="modal-row">
+          <div class="form-group">
+            <label for="prod-category">Category *</label>
+            <select id="prod-category" required>
+              <option value="">— Select —</option>
+              <option value="foodstuffs">🌾 Foodstuffs</option>
+              <option value="cloths">👗 Clothing</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="prod-price">Price (₦) *</label>
+            <input type="number" id="prod-price" placeholder="e.g. 3500" min="0" step="50" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="prod-desc">Description</label>
+          <textarea id="prod-desc" placeholder="Short description shown on the product card…"></textarea>
+        </div>
+
+        <!-- IMAGE UPLOAD -->
+        <div class="form-group">
+          <label>Product Image</label>
+          <input type="hidden" id="prod-image">
+          <div class="upload-zone" id="upload-zone">
+            <input type="file" id="image-file-input" accept="image/jpeg,image/png,image/webp"
+                   style="display:none" onchange="handleImageSelected(this)">
+            <div class="upload-icon">🖼️</div>
+            <p class="upload-label">Choose an image from your computer</p>
+            <p class="upload-hint">JPG · PNG · WEBP &nbsp;·&nbsp; max 5 MB</p>
+            <button type="button" class="upload-pick-btn" onclick="triggerImagePick()">Choose Image</button>
+          </div>
+          <div id="image-preview"></div>
+          <p class="upload-error-msg" id="upload-error"></p>
+        </div>
+
+        <div class="checkbox-group">
+          <div class="checkbox-row">
+            <input type="checkbox" id="prod-available" checked>
+            <label for="prod-available">Show this product in the store (Live)</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="prod-in-stock" checked>
+            <label for="prod-in-stock">In Stock</label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-foot">
+        <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="btn-save" id="save-btn">Save Product</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="admin-toast"></div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>
