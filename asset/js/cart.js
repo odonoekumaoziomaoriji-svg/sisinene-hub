@@ -63,7 +63,8 @@ function renderCart() {
 
   container.innerHTML = cart.map(item => `
     <div class="cart-item">
-      <img src="${item.image_url || 'images/placeholder.png'}" alt="${item.name}" onerror="this.src='images/placeholder.png'">
+      <img src="${item.image_url || ''}" alt="${item.name}" style="${item.image_url ? '' : 'display:none'}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="cart-img-placeholder" style="${item.image_url ? 'display:none' : 'display:flex'}" aria-hidden="true">🌾</div>
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>
         <div class="cart-item-measure">${item.quantity || ''}</div>

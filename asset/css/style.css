@@ -568,3 +568,26 @@ footer a { color: var(--green-lt); text-decoration: none; }
 @media (max-width: 640px) {
   .logo img { width: 58px; height: 58px; }
 }
+
+.product-img-placeholder {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  background: linear-gradient(145deg, #f8f1e4, #e7dcc8);
+  color: var(--green);
+}
+.product-img-placeholder span { font-size: 2.4rem; }
+.product-img-placeholder small { font-weight: 700; color: var(--muted); }
+.cart-img-placeholder {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #f0ece4;
+  font-size: 1.5rem;
+}
