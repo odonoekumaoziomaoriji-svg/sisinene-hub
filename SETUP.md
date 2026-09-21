@@ -26,9 +26,11 @@ CREATE TABLE products (
   name        TEXT NOT NULL,
   category    TEXT NOT NULL CHECK (category IN ('foodstuffs', 'cloths')),
   price       NUMERIC(10,2) NOT NULL,
+  quantity    TEXT NOT NULL DEFAULT '',
   description TEXT,
   image_url   TEXT,
   available   BOOLEAN DEFAULT true,
+  in_stock    BOOLEAN DEFAULT true,
   created_at  TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -44,6 +46,16 @@ CREATE POLICY "Admins can do everything"
 ```
 
 You should see **"Success. No rows returned."** ✅
+
+### If the `products` table already exists
+
+Run this migration instead of recreating the table:
+
+```sql
+ALTER TABLE public.products
+  ADD COLUMN IF NOT EXISTS quantity TEXT NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS in_stock BOOLEAN DEFAULT true;
+```
 
 ---
 
@@ -98,7 +110,7 @@ Then set the storage policy so only you can upload but everyone can view:
 
 ## STEP 6 — Add Keys to the Website
 
-Open **`js/config.js`** and replace the placeholders:
+Open **`asset/js/config.js`** and replace the placeholders:
 
 ```js
 const SUPABASE_URL      = 'https://abcxyz.supabase.co'; // ← your URL
@@ -149,15 +161,18 @@ sisinene-hub/
 ├── index.html          ← Customer-facing store
 ├── admin/
 │   └── index.html      ← Your admin panel (password protected)
-├── css/
-│   ├── style.css       ← Store styles
-│   └── admin.css       ← Admin styles
-├── js/
-│   ├── config.js       ⭐ PUT YOUR SUPABASE KEYS HERE
-│   ├── cart.js         ← Cart + WhatsApp checkout
-│   ├── products.js     ← Loads products from Supabase
-│   └── admin.js        ← CRUD + image upload logic
-└── images/             ← (empty — images go to Supabase Storage)
+└── asset/
+    ├── css/
+    │   ├── style.css   ← Store styles
+    │   └── admin.css   ← Admin styles
+    ├── js/
+    │   ├── config.js   ⭐ PUT YOUR SUPABASE KEYS HERE
+    │   ├── cart.js     ← Cart + WhatsApp checkout
+    │   ├── products.js ← Loads products from Supabase
+    │   └── admin.js    ← CRUD + image upload logic
+    └── image/
+        ├── hero-food-fashion.png
+        └── sisinene-logo.png
 ```
 
 ---

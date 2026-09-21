@@ -432,3 +432,139 @@ footer a { color: var(--green-lt); text-decoration: none; }
   color: #9ca3af !important;
   cursor: not-allowed !important;
 }
+
+.delivery-notice {
+  padding: .8rem 5vw;
+  background: #ffcf33;
+  color: #241a00;
+  border-bottom: 3px solid #b77900;
+  text-align: center;
+  font-size: .95rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.cart-checkout-notice {
+  margin-bottom: 1rem;
+  padding: .75rem;
+  background: #fff7d6;
+  border: 2px solid #e9c46a;
+  border-radius: 9px;
+  color: #4a3700;
+  font-size: .82rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Reference-inspired food and fashion hero */
+.hero {
+  min-height: clamp(540px, 62vw, 680px);
+  padding: clamp(2.5rem, 6vw, 5rem) 5vw 8.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-image: linear-gradient(90deg, rgba(0,45,31,.12), rgba(0,38,27,.55) 38%, rgba(0,38,27,.55) 62%, rgba(0,45,31,.12)), url("../image/hero-food-fashion.png");
+  background-size: cover;
+  background-position: center;
+  isolation: isolate;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.08), transparent 55%, rgba(0,28,20,.45));
+  z-index: -1;
+}
+.hero::after {
+  height: 30px;
+  clip-path: ellipse(56% 100% at 50% 100%);
+}
+.hero-content {
+  width: min(470px, 52vw);
+  text-align: center;
+  text-shadow: 0 2px 18px rgba(0,0,0,.5);
+}
+.hero-tag {
+  margin-bottom: .8rem;
+  border-color: rgba(233,196,106,.8);
+  background: rgba(4,55,39,.72);
+}
+.hero h1 {
+  font-size: clamp(2.7rem, 5.5vw, 5rem);
+  line-height: .96;
+  margin-bottom: .9rem;
+}
+.hero h1 em { display: inline-block; margin-top: .18em; }
+.hero-content > p {
+  color: #eff8ef;
+  font-size: clamp(.95rem, 1.7vw, 1.15rem);
+  line-height: 1.45;
+  margin-bottom: 1.4rem;
+}
+.hero-actions {
+  width: min(100%, 360px);
+  margin: 0 auto;
+  flex-direction: column;
+  gap: .75rem;
+}
+.hero-actions a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .8rem;
+  min-height: 52px;
+}
+.hero .btn-primary { background: #f4c95d; box-shadow: 0 8px 30px rgba(0,0,0,.2); }
+.hero .btn-outline { background: rgba(0,45,31,.7); border-color: rgba(255,255,255,.72); color: #fff; }
+.hero-benefits {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  width: min(760px, 88%);
+  margin: auto;
+  padding: 1rem 1.4rem;
+  border-top: 1px solid rgba(255,255,255,.24);
+  background: rgba(0,39,28,.68);
+  backdrop-filter: blur(8px);
+  border-radius: 18px 18px 0 0;
+  color: #fff;
+}
+.hero-benefit { display: flex; align-items: center; justify-content: center; gap: .7rem; }
+.hero-benefit > span { color: var(--gold); font-size: 1.75rem; line-height: 1; }
+.hero-benefit p { margin: 0; color: #fff; text-align: left; font-size: .82rem; line-height: 1.2; }
+.hero-benefit strong, .hero-benefit small { display: block; }
+.hero-benefit small { margin-top: .2rem; color: #d8eee2; font-size: .72rem; }
+@media (max-width: 720px) {
+  .hero {
+    min-height: 650px;
+    padding: 2.5rem 5vw 10rem;
+    background-position: center;
+  }
+  .hero-content {
+    width: min(100%, 440px);
+    padding: 1.2rem;
+    border-radius: 18px;
+    background: rgba(0,42,30,.65);
+    backdrop-filter: blur(4px);
+  }
+  .hero h1 { font-size: clamp(2.4rem, 12vw, 3.8rem); }
+  .hero-benefits { width: 94%; gap: .35rem; padding: .85rem .5rem; }
+  .hero-benefit { flex-direction: column; gap: .3rem; text-align: center; }
+  .hero-benefit > span { font-size: 1.35rem; }
+  .hero-benefit p { text-align: center; font-size: .68rem; }
+  .hero-benefit small { font-size: .62rem; }
+}
+
+.logo img {
+  display: block;
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+}
+@media (max-width: 640px) {
+  .logo img { width: 58px; height: 58px; }
+}

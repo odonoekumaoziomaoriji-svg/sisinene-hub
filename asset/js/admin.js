@@ -133,7 +133,7 @@ function showUploadError(msg) {
 // ── PRODUCT TABLE ─────────────────────────────
 async function loadAdminProducts() {
   const tbody = document.getElementById('product-tbody');
-  tbody.innerHTML = `<tr><td colspan="6" class="loading-row">Loading…</td></tr>`;
+  tbody.innerHTML = `<tr><td colspan="7" class="loading-row">Loading…</td></tr>`;
 
   const { data: { session } } = await db.auth.getSession();
   console.log('SESSION ON LOAD:', session);
@@ -145,12 +145,12 @@ async function loadAdminProducts() {
 
   if (error) {
     console.error('LOAD ERROR:', error);
-    tbody.innerHTML = `<tr><td colspan="6" class="error-row">Error: ${error.message}</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" class="error-row">Error: ${error.message}</td></tr>`;
     return;
   }
 
   if (!data.length) {
-    tbody.innerHTML = `<tr><td colspan="6" class="loading-row">No products yet — click <strong>+ Add Product</strong> to get started!</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" class="loading-row">No products yet — click <strong>+ Add Product</strong> to get started!</td></tr>`;
     return;
   }
 
@@ -164,6 +164,7 @@ async function loadAdminProducts() {
       </td>
       <td>${p.category === 'foodstuffs' ? '🌾 Foodstuffs' : '👗 Clothing'}</td>
       <td>₦${Number(p.price).toLocaleString()}</td>
+      <td>${p.quantity || '—'}</td>
       <td><span class="status-pill ${p.available ? 'pill-on' : 'pill-off'}">${p.available ? 'Live' : 'Hidden'}</span></td>
       <td><span class="status-pill ${p.in_stock !== false ? 'pill-on' : 'pill-stock'}">${p.in_stock !== false ? 'In Stock' : 'Out of Stock'}</span></td>
       <td class="action-cell">
@@ -181,6 +182,7 @@ function openAddModal() {
   document.getElementById('product-form').reset();
   document.getElementById('prod-available').checked = true;
   document.getElementById('prod-in-stock').checked  = true;
+  document.getElementById('prod-quantity').value    = '';
   document.getElementById('prod-image').value = '';
   setUploadState('idle');
   document.getElementById('modal-overlay').style.display = 'flex';
@@ -196,6 +198,7 @@ async function openEditModal(id) {
   document.getElementById('prod-name').value        = data.name;
   document.getElementById('prod-category').value    = data.category;
   document.getElementById('prod-price').value       = data.price;
+  document.getElementById('prod-quantity').value    = data.quantity ?? '';
   document.getElementById('prod-desc').value        = data.description || '';
   document.getElementById('prod-available').checked = data.available;
   document.getElementById('prod-in-stock').checked  = data.in_stock !== false;
@@ -229,6 +232,7 @@ async function saveProduct(e) {
     name:        document.getElementById('prod-name').value.trim(),
     category:    document.getElementById('prod-category').value,
     price:       parseFloat(document.getElementById('prod-price').value),
+    quantity:    document.getElementById('prod-quantity').value.trim(),
     description: document.getElementById('prod-desc').value.trim(),
     image_url:   document.getElementById('prod-image').value.trim() || null,
     available:   document.getElementById('prod-available').checked,

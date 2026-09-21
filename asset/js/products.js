@@ -64,12 +64,14 @@ function renderProducts() {
       <div class="product-info">
         <div class="product-name">${p.name}</div>
         <div class="product-desc">${p.description || ''}</div>
+        <div class="product-measure">${p.quantity || ''}</div>
         <div class="product-price">₦${Number(p.price).toLocaleString()}</div>
         ${inStock
           ? `<button class="add-to-cart" onclick='addToCart(${JSON.stringify({
               id: p.id,
               name: p.name,
               price: p.price,
+              quantity: p.quantity || '',
               image_url: p.image_url || ''
             })})'>Add to Cart</button>`
           : `<button class="add-to-cart out-of-stock-btn" disabled>Out of Stock</button>`

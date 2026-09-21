@@ -9,7 +9,7 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 // WhatsApp number (include country code, no + or spaces)
 // Nigeria example: 2348012345678
-const WHATSAPP_NUMBER = '2348145666052';
+const WHATSAPP_NUMBER = '2348038121418';
 
 // ─────────────────────────────────────────────
 // DO NOT EDIT BELOW THIS LINE

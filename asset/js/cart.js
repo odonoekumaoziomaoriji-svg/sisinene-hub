@@ -66,6 +66,7 @@ function renderCart() {
       <img src="${item.image_url || 'images/placeholder.png'}" alt="${item.name}" onerror="this.src='images/placeholder.png'">
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-measure">${item.quantity || ''}</div>
         <div class="cart-item-price">₦${(item.price * item.qty).toLocaleString()}</div>
         <div class="cart-item-qty">
           <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
@@ -88,7 +89,7 @@ function checkoutWhatsApp() {
   }
 
   const lines = cart.map(i =>
-    `• ${i.name} x${i.qty} — ₦${(i.price * i.qty).toLocaleString()}`
+    `• ${i.name} (${i.quantity || 'standard'}) x${i.qty} — ₦${(i.price * i.qty).toLocaleString()}`
   ).join('\n');
 
   const total = getTotal();

@@ -4,16 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sisinene Hub — Admin</title>
-  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../asset/css/admin.css">
 </head>
 <body>
+
+<aside class="delivery-notice" role="note">
+  <strong>DELIVERY NOTICE:</strong> Delivery fees will be added at checkout. <strong>Checkout is completed on WhatsApp.</strong>
+</aside>
 
 <!-- ══════════════════════════════════════════
      LOGIN SCREEN
 ══════════════════════════════════════════ -->
 <div id="login-screen">
   <div class="login-box">
-    <div class="login-logo">Sisi<em>nene</em> Hub</div>
+    <div class="login-logo"><img src="../asset/image/sisinene-logo.png" alt="Sisinene Hub"></div>
     <p class="login-sub">Admin Panel — Sign in to manage products</p>
     <form id="login-form">
       <div class="form-group">
@@ -36,7 +40,7 @@
 <div id="dashboard">
 
   <header class="dash-header">
-    <div class="dash-logo">Sisinene Hub <small>Admin</small></div>
+    <div class="dash-logo"><img src="../asset/image/sisinene-logo.png" alt="Sisinene Hub"><small>Admin</small></div>
     <button class="logout-btn" onclick="adminLogout()">Sign Out</button>
   </header>
 
@@ -53,13 +57,14 @@
             <th>Product</th>
             <th>Category</th>
             <th>Price</th>
+            <th>Quantity</th>
             <th>Status</th>
             <th>Stock</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody id="product-tbody">
-          <tr><td colspan="6" class="loading-row">Loading…</td></tr>
+          <tr><td colspan="7" class="loading-row">Loading…</td></tr>
         </tbody>
       </table>
     </div>
@@ -97,6 +102,11 @@
             <label for="prod-price">Price (₦) *</label>
             <input type="number" id="prod-price" placeholder="e.g. 3500" min="0" step="50" required>
           </div>
+        </div>
+
+        <div class="form-group">
+          <label for="prod-quantity">Quantity / Measure *</label>
+          <input type="text" id="prod-quantity" placeholder="e.g. 1kg, 2 litres, 500ml, 1 bag" required>
         </div>
 
         <div class="form-group">
@@ -146,7 +156,7 @@
 
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="../js/config.js"></script>
-<script src="../js/admin.js"></script>
+<script src="../asset/js/config.js"></script>
+<script src="../asset/js/admin.js"></script>
 </body>
 </html>

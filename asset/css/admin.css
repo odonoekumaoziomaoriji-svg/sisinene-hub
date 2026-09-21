@@ -411,3 +411,33 @@ tr:hover td { background: #fdf8f0; }
 .name-cell { display: flex; align-items: center; }
 .pill-stock { background: #fff3cd; color: #856404; }
 .checkbox-group { display: flex; flex-direction: column; gap: .5rem; }
+
+.delivery-notice {
+  padding: .8rem 5vw;
+  background: #ffcf33;
+  color: #241a00;
+  border-bottom: 3px solid #b77900;
+  text-align: center;
+  font-size: .95rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.login-logo img {
+  display: block;
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin: 0 auto .5rem;
+}
+.dash-logo {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.dash-logo img {
+  display: block;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
